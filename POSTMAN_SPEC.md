@@ -1,6 +1,7 @@
 # AutoLoc — Spécifications des requêtes POSTMAN (CRUD toutes entités)
 
-Base URL : `http://localhost:8080/api`
+Base URL : `http://localhost:8081/api`
+> **Note :** le port 8080 est occupé par le service Oracle TNS Listener (TNSLSNR) installé sur la machine ; l'application tourne donc sur le port **8081**.
 Méthodes : GET, POST, PUT, DELETE
 Content-Type : `application/json`
 
@@ -36,7 +37,7 @@ Content-Type : `application/json`
 |-----------|---------|-----|-------------|
 | Lister tous | GET | /api/paiements | — |
 | Lire par id | GET | /api/paiements/1 | — |
-| Créer | POST | /api/paiements | `{ "montant": 225.00, "datePaiement": "2026-11-01", "modePaiement": "CARTE_BANCAIRE", "contrat": { "idContrat": 1 } }` |
+| Créer | POST | /api/paiements | `{ "montant": 225.00, "datePaiement": "2026-11-01", "modePaiement": "CARTE", "contrat": { "idContrat": 1 } }` |
 | Modifier | PUT | /api/paiements/1 | Même JSON avec idPaiement:1 |
 | Supprimer | DELETE | /api/paiements/1 | — |
 
@@ -108,7 +109,7 @@ Content-Type : `application/json`
 |-----------|---------|-----|-------------|
 | Lister tous | GET | /api/employes | — |
 | Lire par id | GET | /api/employes/1 | — |
-| Créer | POST | /api/employes | `{ "nom": "Ben Ali", "prenom": "Sara", "role": "GERANT", "agence": { "idAgence": 1 } }` |
+| Créer | POST | /api/employes | `{ "nom": "Ben Ali", "prenom": "Sara", "role": "AGENT", "agence": { "idAgence": 1 } }` |
 | Modifier | PUT | /api/employes/1 | Même JSON avec idEmploye:1 |
 | Supprimer | DELETE | /api/employes/1 | — |
 
@@ -116,10 +117,10 @@ Content-Type : `application/json`
 
 ### Enums autorisés (chaîne)
 - `CategorieVehicule` : CITADINE, BERLINE, SUV, UTILITAIRE
-- `StatutVehicule` : DISPONIBLE, LOUE, EN_MAINTENANCE
+- `StatutVehicule` : DISPONIBLE, LOUE, MAINTENANCE
 - `StatutReservation` : EN_ATTENTE, CONFIRMEE, ANNULEE, TERMINEE
-- `ModePaiement` : ESPECE, CARTE_BANCAIRE, CHEQUE, VIREMENT
-- `RoleEmploye` : GERANT, EMPLOYE
+- `ModePaiement` : CARTE, ESPECES, VIREMENT
+- `RoleEmploye` : AGENT, MANAGER
 
 ### Prérequis MySQL
 Base `autoloc_db` sur `localhost:3306`, user `root` sans mot de passe (application.properties). `spring.jpa.hibernate.ddl-auto=update` crée les tables automatiquement.
