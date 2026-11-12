@@ -15,4 +15,8 @@ public interface IEmployeService {
     Employe consulterEmployeById(Long idEmploye);
 
     void supprimerEmployeById(Long idEmploye);
+
+    Employe desaffecterEmploye(Long idEmploye);
+
+    Employe affecterEmploye(Long idEmploye, Long idAgence);
 }

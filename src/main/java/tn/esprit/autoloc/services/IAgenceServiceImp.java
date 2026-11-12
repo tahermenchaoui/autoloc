@@ -3,6 +3,7 @@ package tn.esprit.autoloc.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.domain.Agence;
+import tn.esprit.autoloc.domain.Vehicule;
 import tn.esprit.autoloc.repositories.AgenceRepository;
 
 import java.util.List;
@@ -36,5 +37,15 @@ public class IAgenceServiceImp implements IAgenceService {
     @Override
     public void supprimerAgenceById(Long idAgence) {
         agenceRepository.deleteById(idAgence);
+    }
+
+    @Override
+    public Agence ajouterAgenceEtAffecterVehicules(Agence agence) {
+        if (agence.getVehicules() != null) {
+            for (Vehicule vehicule : agence.getVehicules()) {
+                vehicule.setAgence(agence);
+            }
+        }
+        return agenceRepository.save(agence);
     }
 }
